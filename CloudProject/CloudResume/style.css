@@ -1,0 +1,48 @@
+.main {
+    height:297mm;
+    width:210mm;
+    background-color: #FAF0E6;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headers {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+.personal-contact{
+    text-align: center;
+}
+
+.name {
+    padding-top: 30px;
+}
+
+.spacing {
+    margin-left: 35px;
+}
+
+.spacingtop {
+    margin-top: 35px;
+}   
+
+.email {
+    font-family: 'EB Garamond', serif;
+}
+
+.sub-header {
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+}
+
+#github-mark {
+    width: 60px;
+}
+
+.icons {
+    text-align: center;
+}
+
+.body {
+    font-family: 'Times New Roman', Times, serif;
+}
