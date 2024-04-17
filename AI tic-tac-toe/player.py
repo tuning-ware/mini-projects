@@ -122,8 +122,25 @@ class BeatableComputerPlayer(Player):
             return move
         
 
-        # defend the rows
         rows = [game.board[i*3 : (i + 1)*3] for i in range(3)]
+        # i*3 creates the column, adding j shifts the column leftwards
+        columns = [[game.board[i*3 +j] for i in range(3)] for j in range(3)]
+
+        # go for victory!
+        for col_num, col in enumerate(columns):
+            if col.count(self.letter) == 2 and col.count(opponent) == 0:
+                move = [i for i, position in enumerate(col) if self.letter != position]
+                move = col_num + move[0]*3
+                return move
+            
+        for row_num, row in enumerate(rows):
+            if row.count(self.letter) == 2 and row.count(opponent) == 0:
+                move = [i for i, position in enumerate(row) if self.letter != position]
+                move = move[0] + row_num*3
+                return move
+            
+
+        # defend the rows
         # print(f"rows: {rows}") 
         for row_num, row in enumerate(rows):
             if row.count(opponent) == 2 and row.count(self.letter) == 0:
@@ -132,15 +149,12 @@ class BeatableComputerPlayer(Player):
                 return move
             
         # defend the columns 
-        # i*3 creates the column, adding j shifts the column leftwards
-        columns = [[game.board[i*3 +j] for i in range(3)] for j in range(3)]
         # print(f"columns: {columns}")
         for col_num, col in enumerate(columns):
             if col.count(opponent) == 2 and col.count(self.letter) == 0:
                 move = [i for i, position in enumerate(col) if opponent != position]
                 move = col_num + move[0]*3
                 return move
-
 
         # take the centre spot
         if 4 in game.available_moves():
@@ -150,6 +164,5 @@ class BeatableComputerPlayer(Player):
         elif any(move in game.available_moves() for move in [0, 2, 6, 8]):
             return random.choice([move for move in [0, 2, 6, 8] if move in game.available_moves()])
         
-        print("all fails")
-        return random.choice(game.available_moves())
         
+        return random.choice(game.available_moves())
